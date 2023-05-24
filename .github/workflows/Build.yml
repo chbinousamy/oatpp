@@ -1,0 +1,33 @@
+# Nom de notre workflow
+name: "Build OAT"
+
+# Événements sur lesquels il doit être déclenché
+on:
+  workflow_dispatch:
+      
+  push:         # <- Déclenché lorsque l'on pousse du code...
+   branches:
+     - master  # <- ... mais seulement sur cette branche
+
+jobs:
+
+  # Notre job
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # Tâches à effectuer, comme expliquées ci-dessus
+    steps:
+
+      # 1. On récupère le contenu du dépôt
+      - name: "Checkout"
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          persist-credentials: false
+          
+      - name: "Make"
+        run: |
+          mkdir build 
+          cd build
+          cmake ..
+          make install
