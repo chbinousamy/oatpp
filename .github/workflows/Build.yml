@@ -12,7 +12,7 @@ on:
 jobs:
 
   # Notre job
-  build-and-deploy:
+  build-oat:
     runs-on: ubuntu-latest
 
     # Tâches à effectuer, comme expliquées ci-dessus
